@@ -554,14 +554,49 @@ b{font-weight:800;color:#fff}
 (() => {
   'use strict';
   /* ===== Configuración ===== */
-  const DUR = [22, 22, 22];                       // segundos que dura cada slide
+  const SPEED = 2;                                // 2 = todo corre al doble de velocidad
+  const DUR = [22, 22, 22].map(d => d / SPEED);   // segundos que dura cada slide
+  const PAUSE_KEY = ' ';                          // tecla que pausa mientras se mantiene presionada (espacio)
   const qs = new URLSearchParams(location.search);
   const HOLD = qs.has('hold');                    // ?hold     -> se queda en un slide (para revisar)
   const START = Math.min(2, Math.max(0, (parseInt(qs.get('slide'), 10) || 1) - 1)); // ?slide=2
 
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+  /* Reloj virtual: se detiene mientras la pausa está activa (temporizadores, conteos, esperas) */
+  let paused = false, vt = 0, vlast = performance.now(), tid = 0, tasks = [];
+  const vnow = () => vt;
+  setInterval(() => {
+    const n = performance.now();
+    if (!paused) vt += n - vlast;
+    vlast = n;
+    if (paused) return;
+    for (const k of tasks.filter(k => k.at <= vt)) {
+      if (!tasks.includes(k)) continue;              // cancelada por una tarea anterior
+      if (k.every) k.at += k.every; else tasks = tasks.filter(x => x !== k);
+      k.fn();
+    }
+  }, 16);
+  const setT = (fn, ms) => { const k = { id: ++tid, at: vt + ms, fn }; tasks.push(k); return k.id; };
+  const setI = (fn, ms) => { const k = { id: ++tid, at: vt + ms, fn, every: ms }; tasks.push(k); return k.id; };
+  const clearT = id => { tasks = tasks.filter(k => k.id !== id); };
+  const sleep = ms => new Promise(r => setT(r, ms));
+
+  /* Pausa: congela también todas las animaciones y transiciones CSS */
+  let frozen = [];
+  const setPaused = p => {
+    if (p === paused) return;
+    paused = p;
+    if (p) {
+      frozen = document.getAnimations().filter(a => a.playState === 'running');
+      frozen.forEach(a => a.pause());
+    } else {
+      frozen.forEach(a => { try { a.play(); } catch (_) {} });
+      frozen = [];
+    }
+    root.classList.toggle('paused', p);
+  };
   const rnd = (a, b) => a + Math.random() * (b - a);
   const root = document.documentElement;
 
@@ -592,18 +627,18 @@ b{font-weight:800;color:#fff}
   const ctl = () => {
     let ids = [], on = false;
     return {
-      at(fn, ms) { ids.push(setTimeout(() => on && fn(), ms)); },
-      every(fn, ms) { ids.push(setInterval(() => on && fn(), ms)); },
+      at(fn, ms) { ids.push(setT(() => on && fn(), ms / SPEED)); },
+      every(fn, ms) { ids.push(setI(() => on && fn(), ms / SPEED)); },
       start() { on = true; },
-      stop() { on = false; ids.forEach(id => { clearTimeout(id); clearInterval(id); }); ids = []; },
+      stop() { on = false; ids.forEach(clearT); ids = []; },
     };
   };
   const money = v => '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const count = (el, to, ms, delay = 0) => {
     const from = parseFloat(el.dataset.v || '0'); el.dataset.v = to;
-    const t0 = performance.now() + delay;
-    const step = now => {
-      const p = Math.min(1, Math.max(0, (now - t0) / ms)), e = 1 - Math.pow(1 - p, 3);
+    const t0 = vnow() + delay;
+    const step = () => {
+      const p = Math.min(1, Math.max(0, (vnow() - t0) / ms)), e = 1 - Math.pow(1 - p, 3);
       el.textContent = money(from + (to - from) * e);
       if (p < 1) requestAnimationFrame(step);
     };
@@ -622,7 +657,7 @@ b{font-weight:800;color:#fff}
       const tot = VALS[k++ % VALS.length], net = tot / 1.13, tax = tot - net;
       bn.style.width = bt.style.width = '0%';
       count(T, tot, 1100); count(N, net, 1100, 200); count(I, tax, 1100, 380);
-      setTimeout(() => { bn.style.width = (net / tot * 100) + '%'; bt.style.width = (tax / tot * 100) + '%'; }, 450);
+      setT(() => { bn.style.width = (net / tot * 100) + '%'; bt.style.width = (tax / tot * 100) + '%'; }, 450);
     };
     const setOrder = r => { const d = ORD[o++ % ORD.length]; $('.mesa', rows[r]).textContent = d[0]; $('.dish', rows[r]).textContent = d[1]; };
     const paint = (r, fresh) => {
@@ -764,12 +799,16 @@ b{font-weight:800;color:#fff}
 
   /* Atajos solo para el operador (el público no interactúa) */
   addEventListener('keydown', e => {
+    if (e.key === PAUSE_KEY) { e.preventDefault(); if (!e.repeat) setPaused(true); return; }
     if (e.key === 'ArrowRight' || e.key === 'PageDown') show((cur + 1) % slides.length);
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show((cur + slides.length - 1) % slides.length);
     else if (e.key === 'f' || e.key === 'F') {
       if (document.fullscreenElement) document.exitFullscreen(); else root.requestFullscreen().catch(() => {});
     }
   });
+
+  addEventListener('keyup', e => { if (e.key === PAUSE_KEY) setPaused(false); });
+  addEventListener('blur', () => setPaused(false));
 
   /* Evita que la pantalla se apague (si el navegador lo permite) */
   const wake = () => { try { navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); } catch (_) {} };
