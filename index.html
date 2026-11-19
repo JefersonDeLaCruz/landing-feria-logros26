@@ -150,7 +150,6 @@ b{font-weight:800;color:#fff}
 .live{display:flex;align-items:center;gap:9px;margin-left:auto;font:800 15px/1 var(--fm);letter-spacing:.18em;text-transform:uppercase;color:#ff7a9c}
 .live::before{content:"";width:10px;height:10px;border-radius:50%;background:#ff3d6e;animation:ping 1.6s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,61,110,.7)}70%,100%{box-shadow:0 0 0 12px rgba(255,61,110,0)}}
-.demo{padding:6px 10px;border-radius:8px;font:800 13px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);border:1px solid rgba(255,255,255,.18)}
 .dbody{display:grid;grid-template-columns:418px 1fr;gap:20px;padding:20px 22px 0}
 .pan{padding:18px 20px 20px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
 .lab{display:flex;justify-content:space-between;align-items:center;font:800 15px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
@@ -396,7 +395,7 @@ b{font-weight:800;color:#fff}
     </div>
 
     <div class="dash rv pop" style="--d:300ms">
-      <div class="wbar"><i></i><i></i><i></i><span class="url">chayito · dashboard gerencial</span><span class="live">En vivo</span><span class="demo">Demo</span></div>
+      <div class="wbar"><i></i><i></i><i></i><span class="url">chayito · dashboard gerencial</span></div>
       <div class="dbody">
         <div class="pan">
           <div class="lab">Desglose IVA 13% <em>CC-66 / CC-67</em></div>
@@ -414,7 +413,7 @@ b{font-weight:800;color:#fff}
           <div class="tkr" data-s="0"><div class="who"><span class="mesa">Mesa 2</span><span class="dish">3× Pupusas revueltas</span></div><span class="st s0">Pendiente</span><i class="tb"></i></div>
         </div>
       </div>
-      <div class="dfoot"><span class="k">Valor agregado</span><span>Dashboard gerencial en tiempo real: margen bruto %, rentabilidad por platillo, exportación a Excel (OpenSpout) y 6 roles protegidos con Spatie RBAC.</span></div>
+      <div class="dfoot"><span class="k">Valor agregado</span><span><b>Sabe cuánto gana con cada platillo</b>, al instante. Reportes a Excel con un clic y <b>cada empleado ve solo lo que le corresponde</b>.</span></div>
     </div>
 
     <div class="f1">
@@ -440,10 +439,10 @@ b{font-weight:800;color:#fff}
         <span class="line t-big" style="--d:120ms"><span class="w"><span class="gt">Reporte</span></span></span>
         <span class="line t-big" style="--d:220ms"><span class="w"><span class="gt">Ciudadano</span></span></span>
       </h2>
-      <p class="lede rv" style="--d:420ms">Mecánica colaborativa <b>estilo Waze</b>: reportes urbanos en <b>2 toques</b> sobre mapa satelital.</p>
+      <p class="lede rv" style="--d:420ms">Mecánica colaborativa <b>estilo Waze</b>: reportes urbanos en <b>2 toques</b> sobre el mapa.</p>
       <p class="sub rv" style="--d:520ms">Baches, fugas o alumbrado: la validación pasa al <b>consenso de los vecinos</b> a menos de 500 m.</p>
       <div class="box rv" style="--d:620ms"><span class="k">Valor agregado</span><p><b>Offline-first</b> con Room DB (SQLite) + WorkManager: sincroniza al recuperar la red. <b>4 niveles de karma</b>: los usuarios Expertos validan con solo 3 votos.</p></div>
-      <div class="chips rv" style="--d:720ms"><span>Android Studio · Java</span><span>Room DB</span><span>WorkManager</span><span>Google Maps SDK</span></div>
+      <div class="chips rv" style="--d:720ms"><span>Android Studio · Java</span><span>Room DB</span><span>WorkManager</span><span>Mapbox</span></div>
     </div>
 
     <div class="phone rv pop" style="--d:300ms">
@@ -479,7 +478,7 @@ b{font-weight:800;color:#fff}
     <div class="f2">
       <div class="feat rv lft" style="--d:500ms"><div class="fi"><svg class="ic"><use href="#i-tap"/></svg></div><div><h4>Reporte en 2 toques</h4><p>Pulsación larga en el mapa + selector radial. Sin formularios.</p></div></div>
       <div class="feat rv lft" style="--d:580ms"><div class="fi"><svg class="ic"><use href="#i-radar"/></svg></div><div><h4>Geofence &lt; 500 m</h4><p>Los vecinos cercanos confirman «Sigue ahí» o «Ya se resolvió».</p></div></div>
-      <div class="feat rv lft" style="--d:660ms"><div class="fi"><svg class="ic"><use href="#i-bell"/></svg></div><div><h4>Alertas push &lt; 300 m</h4><p>Notificación interactiva: vota sin abrir la app.</p></div></div>
+      <div class="feat rv lft" style="--d:660ms"><div class="fi"><svg class="ic"><use href="#i-bell"/></svg></div><div><h4>Alertas push cercanas</h4><p>Radio de 100 a 500 m a tu elección. Vota sin abrir la app.</p></div></div>
       <div class="feat rv lft" style="--d:740ms"><div class="fi"><svg class="ic"><use href="#i-okc"/></svg></div><div><h4>Auto-cierre al 70%</h4><p>Cierre algorítmico cuando el 70% de los votos concuerda (mín. 3).</p></div></div>
     </div>
   </div>
@@ -517,14 +516,14 @@ b{font-weight:800;color:#fff}
         <svg class="qr" viewBox="-1 -1 35 35" shape-rendering="crispEdges" role="img" aria-label="Código QR: carpeta de Google Drive con la APK de Reporte Ciudadano"><path d="M0 0h7v1h-7zM9 0h1v1h-1zM15 0h1v1h-1zM19 0h2v1h-2zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM11 1h3v1h-3zM15 1h2v1h-2zM21 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h3v1h-3zM14 2h2v1h-2zM18 2h1v1h-1zM20 2h5v1h-5zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM11 3h2v1h-2zM14 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h1v1h-1zM12 4h5v1h-5zM18 4h2v1h-2zM21 4h3v1h-3zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM12 5h2v1h-2zM18 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM12 7h5v1h-5zM21 7h1v1h-1zM0 8h5v1h-5zM6 8h5v1h-5zM12 8h1v1h-1zM15 8h2v1h-2zM19 8h1v1h-1zM22 8h1v1h-1zM24 8h2v1h-2zM27 8h1v1h-1zM29 8h1v1h-1zM31 8h1v1h-1zM0 9h3v1h-3zM5 9h1v1h-1zM9 9h1v1h-1zM12 9h2v1h-2zM16 9h3v1h-3zM20 9h2v1h-2zM23 9h1v1h-1zM26 9h1v1h-1zM30 9h3v1h-3zM0 10h1v1h-1zM2 10h1v1h-1zM4 10h6v1h-6zM14 10h1v1h-1zM16 10h2v1h-2zM20 10h3v1h-3zM25 10h2v1h-2zM28 10h2v1h-2zM31 10h1v1h-1zM0 11h1v1h-1zM3 11h3v1h-3zM8 11h6v1h-6zM15 11h1v1h-1zM18 11h1v1h-1zM20 11h4v1h-4zM25 11h2v1h-2zM30 11h1v1h-1zM4 12h4v1h-4zM9 12h1v1h-1zM15 12h1v1h-1zM17 12h3v1h-3zM23 12h3v1h-3zM27 12h3v1h-3zM0 13h3v1h-3zM5 13h1v1h-1zM7 13h1v1h-1zM9 13h2v1h-2zM12 13h1v1h-1zM14 13h3v1h-3zM19 13h2v1h-2zM23 13h2v1h-2zM26 13h1v1h-1zM31 13h2v1h-2zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM10 14h2v1h-2zM13 14h1v1h-1zM15 14h1v1h-1zM17 14h2v1h-2zM20 14h1v1h-1zM22 14h1v1h-1zM25 14h4v1h-4zM31 14h1v1h-1zM0 15h2v1h-2zM4 15h1v1h-1zM8 15h1v1h-1zM10 15h4v1h-4zM16 15h1v1h-1zM21 15h2v1h-2zM25 15h2v1h-2zM28 15h1v1h-1zM30 15h1v1h-1zM1 16h1v1h-1zM3 16h1v1h-1zM5 16h6v1h-6zM14 16h4v1h-4zM20 16h1v1h-1zM22 16h4v1h-4zM27 16h2v1h-2zM31 16h1v1h-1zM0 17h3v1h-3zM5 17h1v1h-1zM7 17h3v1h-3zM14 17h1v1h-1zM16 17h1v1h-1zM19 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM26 17h2v1h-2zM29 17h1v1h-1zM31 17h2v1h-2zM0 18h2v1h-2zM3 18h1v1h-1zM5 18h2v1h-2zM8 18h3v1h-3zM13 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM22 18h1v1h-1zM25 18h1v1h-1zM29 18h1v1h-1zM31 18h1v1h-1zM1 19h2v1h-2zM4 19h1v1h-1zM7 19h1v1h-1zM11 19h2v1h-2zM18 19h4v1h-4zM23 19h1v1h-1zM25 19h2v1h-2zM30 19h1v1h-1zM0 20h4v1h-4zM6 20h4v1h-4zM11 20h2v1h-2zM14 20h3v1h-3zM19 20h1v1h-1zM22 20h4v1h-4zM27 20h2v1h-2zM31 20h1v1h-1zM0 21h3v1h-3zM7 21h2v1h-2zM12 21h1v1h-1zM14 21h1v1h-1zM17 21h1v1h-1zM19 21h1v1h-1zM23 21h1v1h-1zM26 21h1v1h-1zM29 21h1v1h-1zM31 21h2v1h-2zM0 22h1v1h-1zM2 22h2v1h-2zM6 22h2v1h-2zM12 22h4v1h-4zM18 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM25 22h5v1h-5zM31 22h1v1h-1zM0 23h1v1h-1zM2 23h1v1h-1zM4 23h1v1h-1zM7 23h3v1h-3zM11 23h1v1h-1zM15 23h1v1h-1zM18 23h2v1h-2zM21 23h4v1h-4zM29 23h2v1h-2zM0 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM22 24h1v1h-1zM24 24h5v1h-5zM32 24h1v1h-1zM8 25h1v1h-1zM10 25h1v1h-1zM12 25h3v1h-3zM19 25h2v1h-2zM24 25h1v1h-1zM28 25h3v1h-3zM32 25h1v1h-1zM0 26h7v1h-7zM8 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM17 26h2v1h-2zM21 26h4v1h-4zM26 26h1v1h-1zM28 26h1v1h-1zM30 26h2v1h-2zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h2v1h-2zM13 27h1v1h-1zM15 27h1v1h-1zM18 27h2v1h-2zM21 27h1v1h-1zM23 27h2v1h-2zM28 27h4v1h-4zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h2v1h-2zM14 28h1v1h-1zM16 28h2v1h-2zM20 28h1v1h-1zM22 28h1v1h-1zM24 28h6v1h-6zM31 28h1v1h-1zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM13 29h2v1h-2zM16 29h6v1h-6zM25 29h1v1h-1zM28 29h1v1h-1zM30 29h3v1h-3zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h2v1h-2zM11 30h6v1h-6zM18 30h1v1h-1zM20 30h4v1h-4zM26 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM10 31h1v1h-1zM13 31h1v1h-1zM15 31h2v1h-2zM18 31h1v1h-1zM20 31h2v1h-2zM25 31h1v1h-1zM29 31h2v1h-2zM0 32h7v1h-7zM8 32h1v1h-1zM15 32h1v1h-1zM17 32h1v1h-1zM22 32h1v1h-1zM24 32h2v1h-2zM27 32h2v1h-2zM31 32h1v1h-1z"/></svg>
         <i class="brk a"></i><i class="brk b"></i><i class="brk c"></i><i class="brk d"></i>
       </div>
-      <div class="qr-sub"><b>APK · Reporte Ciudadano</b><span><i>drive.google.com</i><i><svg class="ic"><use href="#i-check"/></svg>Android 8.0 o superior</i></span></div>
+      <div class="qr-sub"><b>APK · Reporte Ciudadano</b><span><i>drive.google.com</i><i><svg class="ic"><use href="#i-check"/></svg>Android 7.0 o superior</i></span></div>
     </div>
 
     <div class="team">
       <div class="thead rv" style="--d:700ms"><span class="k">Equipo de desarrollo</span><span class="u">Universidad de El Salvador · UES-FMO · Ingeniería de Sistemas</span></div>
       <div class="mems">
         <div class="mem rv" style="--d:760ms"><span class="av">CZ</span><div><span class="fn">César</span><span class="ln"><span class="gt">Zuleta</span></span><span class="rl">Desarrollo y Arquitectura</span></div></div>
-        <div class="mem rv" style="--d:840ms"><span class="av">AD</span><div><span class="fn">Alexis</span><span class="ln"><span class="gt">De La Cruz</span></span><span class="rl">Desarrollo y Arquitectura</span></div></div>
+        <div class="mem rv" style="--d:840ms"><span class="av">AD</span><div><span class="fn">Jeferson</span><span class="ln"><span class="gt">De La Cruz</span></span><span class="rl">Desarrollo y Arquitectura</span></div></div>
         <div class="mem rv" style="--d:920ms"><span class="av">CV</span><div><span class="fn">Cristian</span><span class="ln"><span class="gt">Ventura</span></span><span class="rl">Desarrollo y Arquitectura</span></div></div>
         <div class="mem rv" style="--d:1000ms"><span class="av">MV</span><div><span class="fn">Manuel</span><span class="ln"><span class="gt">Villatoro</span></span><span class="rl">Desarrollo y Arquitectura</span></div></div>
       </div>
@@ -546,7 +545,7 @@ b{font-weight:800;color:#fff}
     <div class="seg" data-i="1"><div class="lb"><b>02</b>Reporte Ciudadano</div><span class="bar"><i></i></span></div>
     <div class="seg" data-i="2"><div class="lb"><b>03</b>Descarga y equipo</div><span class="bar"><i></i></span></div>
   </div>
-  <div class="ticker"><div class="tk" id="tk"><span>SGCO-Chayito</span><span>Reporte Ciudadano</span><span>Universidad de El Salvador</span><span>Facultad Multidisciplinaria Oriental</span><span>Ingeniería de Sistemas</span><span>Software de impacto real para empresas y comunidades</span><span>César Zuleta</span><span>Alexis De La Cruz</span><span>Cristian Ventura</span><span>Manuel Villatoro</span></div></div>
+  <div class="ticker"><div class="tk" id="tk"><span>SGCO-Chayito</span><span>Reporte Ciudadano</span><span>Universidad de El Salvador</span><span>Facultad Multidisciplinaria Oriental</span><span>Ingeniería de Sistemas</span><span>Software de impacto real para empresas y comunidades</span><span>César Zuleta</span><span>Jeferson De La Cruz</span><span>Cristian Ventura</span><span>Manuel Villatoro</span></div></div>
 </div>
 <div class="vig"></div>
 <div class="grain"></div>
